@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaga Supermarket</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">🛒 <span>Jaga Supermarket</span></div>
+    <button id="cartBtn">🛒 Cart <b id="cartCount">0</b></button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Fresh Products<br>Better Life</h1>
+      <p>Quality groceries at great prices.</p>
+      <a href="#products">Shop Now</a>
+    </div>
+  </section>
+
+  <main>
+    <h2 id="products">Products</h2>
+    <input id="search" type="search" placeholder="Search products...">
+
+    <div class="categories">
+      <button class="active" data-category="All">All</button>
+      <button data-category="Fruits">Fruits</button>
+      <button data-category="Vegetables">Vegetables</button>
+      <button data-category="Dairy">Dairy</button>
+      <button data-category="Snacks">Snacks</button>
+      <button data-category="Drinks">Drinks</button>
+    </div>
+
+    <div id="productGrid" class="grid"></div>
+
+    <section id="cart" class="cart">
+      <h2>Your Cart</h2>
+      <div id="cartItems"></div>
+      <div class="total">Total: ₹<span id="total">0</span></div>
+      <button id="checkout" class="checkout">Checkout</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Jaga Supermarket • Fresh • Affordable • Fast</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
