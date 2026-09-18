@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J Supermarket</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f5faf7;color:#17352d}
+header{background:#fff;display:flex;align-items:center;gap:25px;padding:16px 5%;box-shadow:0 2px 10px #0001;position:sticky;top:0;z-index:5}
+.logo{font-size:25px;font-weight:bold;color:#078a43;white-space:nowrap}
+nav{display:flex;gap:18px}
+nav a{color:#17352d;text-decoration:none;cursor:pointer;font-weight:600}
+.search{margin-left:auto;display:flex;width:300px}
+.search input{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px 0 0 8px;outline:none}
+.search button{border:0;background:#078a43;color:#fff;padding:0 15px;border-radius:0 8px 8px 0;cursor:pointer}
+.login{background:#078a43;color:#fff;border:0;padding:11px 18px;border-radius:8px;cursor:pointer}
+.hero{padding:75px 8%;min-height:390px;background:linear-gradient(110deg,#e5f8d7,#fff)}
+.hero small{color:#078a43;font-weight:bold}
+.hero h1{font-size:48px;margin:15px 0;color:#12372d}
+.hero p{font-size:18px;max-width:550px;line-height:1.6;margin-bottom:25px}
+.shop{background:#078a43;color:#fff;border:0;padding:14px 28px;border-radius:25px;cursor:pointer;font-size:16px}
+.products{padding:45px 7%}
+.products h2{text-align:center;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px}
+.card{background:#fff;border-radius:12px;padding:18px;text-align:center;box-shadow:0 2px 10px #0001}
+.emoji{font-size:55px}
+.card h3{margin:10px 0}
+.price{font-weight:bold;color:#078a43;margin:10px}
+.card button{background:#078a43;color:#fff;border:0;padding:9px 16px;border-radius:6px;cursor:pointer}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;z-index:10}
+.loginbox{background:#fff;width:350px;padding:30px;border-radius:15px;position:relative}
+.loginbox h2{text-align:center;color:#078a43;margin-bottom:18px}
+.loginbox input{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:7px}
+.loginbox .submit{width:100%;padding:12px;margin-top:10px;background:#078a43;color:#fff;border:0;border-radius:7px;cursor:pointer}
+.close{position:absolute;right:18px;top:10px;font-size:25px;cursor:pointer}
+.msg{text-align:center;color:#078a43;margin-top:10px;font-size:14px}
+footer{background:#063d32;color:white;text-align:center;padding:28px;margin-top:20px}
+@media(max-width:800px){
+header{flex-wrap:wrap;padding:14px 3%}
+nav{display:none}.search{order:3;width:100%;margin-left:0}
+.hero h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🛒 J Supermarket</div>
+  <nav>
+    <a onclick="goHome()">Home</a>
+    <a href="#products">Shop</a>
+    <a href="#products">Categories</a>
+  </nav>
+
+  <div class="search">
+    <input id="search" type="text" placeholder="Search products..." onkeyup="searchProducts()">
+    <button onclick="searchProducts()">🔍</button>
+  </div>
+
+  <button class="login" onclick="openLogin()">Login</button>
+</header>
+
+<section class="hero" id="home">
+  <small>WELCOME TO J SUPERMARKET</small>
+  <h1>Fresh Groceries at Your Doorstep</h1>
+  <p>Shop fresh fruits, vegetables, groceries and daily essentials at J Supermarket.</p>
+  <button class="shop" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+    Shop Now →
+  </button>
+</section>
+
+<section class="products" id="products">
+<h2>Our Products</h2>
+<div class="grid">
+
+<div class="card" data-name="apple"><div class="emoji">🍎</div><h3>Apples</h3><div class="price">₹120 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="banana"><div class="emoji">🍌</div><h3>Bananas</h3><div class="price">₹60 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="orange"><div class="emoji">🍊</div><h3>Oranges</h3><div class="price">₹90 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="mango"><div class="emoji">🥭</div><h3>Mango</h3><div class="price">₹100 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="tomato"><div class="emoji">🍅</div><h3>Tomatoes</h3><div class="price">₹40 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="potato"><div class="emoji">🥔</div><h3>Potatoes</h3><div class="price">₹35 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="carrot"><div class="emoji">🥕</div><h3>Carrots</h3><div class="price">₹50 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="milk"><div class="emoji">🥛</div><h3>Milk</h3><div class="price">₹50 / litre</div><button>Add to Cart</button></div>
+<div class="card" data-name="bread"><div class="emoji">🍞</div><h3>Bread</h3><div class="price">₹35</div><button>Add to Cart</button></div>
+<div class="card" data-name="eggs"><div class="emoji">🥚</div><h3>Eggs</h3><div class="price">₹70 / 6</div><button>Add to Cart</button></div>
+<div class="card" data-name="rice"><div class="emoji">🍚</div><h3>Rice</h3><div class="price">₹65 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="dal"><div class="emoji">🫘</div><h3>Dal</h3><div class="price">₹110 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="sugar"><div class="emoji">🍬</div><h3>Sugar</h3><div class="price">₹45 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="salt"><div class="emoji">🧂</div><h3>Salt</h3><div class="price">₹25 / kg</div><button>Add to Cart</button></div>
+<div class="card" data-name="oil"><div class="emoji">🫗</div><h3>Cooking Oil</h3><div class="price">₹140 / litre</div><button>Add to Cart</button></div>
+<div class="card" data-name="biscuit"><div class="emoji">🍪</div><h3>Biscuits</h3><div class="price">₹30</div><button>Add to Cart</button></div>
+<div class="card" data-name="juice"><div class="emoji">🧃</div><h3>Fruit Juice</h3><div class="price">₹80</div><button>Add to Cart</button></div>
+<div class="card" data-name="chips"><div class="emoji">🥔</div><h3>Chips</h3><div class="price">₹20</div><button>Add to Cart</button></div>
+<div class="card" data-name="soap"><div class="emoji">🧼</div><h3>Soap</h3><div class="price">₹40</div><button>Add to Cart</button></div>
+<div class="card" data-name="shampoo"><div class="emoji">🧴</div><h3>Shampoo</h3><div class="price">₹120</div><button>Add to Cart</button></div>
+
+</div>
+</section>
+
+<div class="modal" id="loginModal">
+<div class="loginbox">
+<span class="close" onclick="closeLogin()">×</span>
+<h2>J Supermarket Login</h2>
+<input type="email" id="email" placeholder="Email address">
+<input type="password" id="password" placeholder="Password">
+<button class="submit" onclick="login()">Login</button>
+<div class="msg" id="msg"></div>
+</div>
+</div>
+
+<footer>© 2026 J Supermarket | Fresh Products • Better Life</footer>
+
+<script>
+function openLogin(){
+ document.getElementById("loginModal").style.display="flex";
+}
+function closeLogin(){
+ document.getElementById("loginModal").style.display="none";
+}
+function login(){
+ const email=document.getElementById("email").value;
+ const password=document.getElementById("password").value;
+ const msg=document.getElementById("msg");
+ if(!email || !password){
+   msg.textContent="Please enter email and password.";
+ }else{
+   msg.textContent="Login successful! (Demo)";
+ }
+}
+function searchProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+   card.style.display=card.dataset.name.includes(q)?"block":"none";
+ });
+}
+function goHome(){
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+window.onclick=function(e){
+ if(e.target===document.getElementById("loginModal")) closeLogin();
+}
+</script>
+
+</body>
+</html>
